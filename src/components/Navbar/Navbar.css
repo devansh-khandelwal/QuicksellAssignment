@@ -1,0 +1,71 @@
+/* Navbar.css */
+.navbar {
+  background-color: rgb(180, 180, 180);
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-toggle {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.navbar-button {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.arrow {
+  margin-left: 5px;
+  border: solid black;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+.navbar-dropdown {
+  list-style: none;
+  padding: 0;
+  position: absolute;
+  top: 7%;
+  left: 0;
+  background-color: green;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.nested-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 100%;
+  margin-top: -10px;
+  background-color: pink;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.navbar-dropdown-item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+/* .navbar-dropdown-item:hover {
+  background-color: #e9ecef;
+} */

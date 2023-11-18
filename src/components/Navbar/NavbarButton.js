@@ -27,13 +27,11 @@ export default function TwoByTwoComponent({
   const onClick1 = (item) => {
     handleItemClick1(item);
     setDropdown1Open(false);
-    toggleDropdown();
   };
 
   const onClick2 = (item) => {
     handleItemClick2(item);
     setDropdown2Open(false);
-    toggleDropdown();
   };
 
   return (

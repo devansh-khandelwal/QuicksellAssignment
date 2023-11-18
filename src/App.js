@@ -5,7 +5,7 @@ import "./App.css";
 
 function App() {
   const [selectedItem1, setSelectedItem1] = useState("Status");
-  const [selectedItem2, setSelectedItem2] = useState("Select");
+  const [selectedItem2, setSelectedItem2] = useState("Priority");
 
   const [nestedDropdownOpen, setNestedDropdownOpen] = useState(false);
 
@@ -15,22 +15,30 @@ function App() {
 
   const handleItemClick1 = (item) => {
     setSelectedItem1(item);
-    setSelectedItem2("Select");
   };
 
   const handleItemClick2 = (item) => {
     setSelectedItem2(item);
-    setSelectedItem1("Select");
   };
 
   return (
     <div>
-      <Navbar
+      {/* <Navbar
         toggleNestedDropdown={toggleNestedDropdown}
         selectedItem1={selectedItem1}
         selectedItem2={selectedItem2}
         handleItemClick1={handleItemClick1}
         handleItemClick2={handleItemClick2}
+      /> */}
+      <Card
+        id="CAM-1"
+        title="Update User Profile Page UI"
+        tag={["Feature request"]}
+        userId="usr-1"
+        status="Todo"
+        priority={4}
+        name="Suresh Gupta"
+        availability={true}
       />
     </div>
   );

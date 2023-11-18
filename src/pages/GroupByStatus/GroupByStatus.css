@@ -1,0 +1,10 @@
+.GroupByStatus {
+  display: flex;
+}
+
+.status-column {
+  flex: 1;
+  margin: 10px;
+}
+
+/* Add any additional styling as needed */

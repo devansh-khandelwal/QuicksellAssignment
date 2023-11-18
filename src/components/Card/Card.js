@@ -50,6 +50,7 @@ const Card = ({
   };
 
   const getAbbreviation = (name) => {
+    if (!name) return ""; // Return an empty string if the name is undefined
     const initials = name.split(" ").map((word) => word[0]);
     return initials.join("").toUpperCase();
   };
@@ -59,18 +60,20 @@ const Card = ({
   return (
     <div className="card">
       <div className="header">
-        <h2>{id}</h2>
+        <h4>{id}</h4>
         <div className="profile-container">
-          <div className="profile-icon" style={{ backgroundColor }}>
-            <div className="initials">
-              {getAbbreviation(name)}
-              <div
-                className={`availability-indicator ${
-                  availability ? "available" : "not-available"
-                }`}
-              ></div>
+          {name && (
+            <div className="profile-icon" style={{ backgroundColor }}>
+              <div className="initials">
+                {getAbbreviation(name)}
+                <div
+                  className={`availability-indicator ${
+                    availability ? "available" : "not-available"
+                  }`}
+                ></div>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
       <div className="container">

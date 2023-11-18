@@ -50,3 +50,19 @@
 .initials {
   font-weight: bold;
 }
+
+.container {
+  display: flex;
+  align-items: center;
+  /* border: red 1px solid; */
+}
+
+.status-icon {
+  margin-right: 10px;
+  /* border: 1px green solid; */
+}
+
+/* Add this style if needed to ensure the icon is aligned at the top */
+.status-icon svg {
+  vertical-align: top;
+}

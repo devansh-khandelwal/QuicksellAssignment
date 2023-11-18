@@ -1,6 +1,34 @@
 import React from "react";
 import "./Card.css";
 
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
+import DoNotDisturbIcon from "@mui/icons-material/DoNotDisturb";
+import PendingIcon from "@mui/icons-material/Pending";
+
+const StatusIcon = ({ status }) => {
+  let icon;
+
+  switch (status) {
+    case "Todo":
+      icon = <RadioButtonUncheckedIcon fontSize="small" />; // Unchecked circle icon
+      break;
+    case "Done":
+      icon = <CheckCircleIcon fontSize="small" />; // Checked circle icon
+      break;
+    case "In progress":
+      icon = <PendingIcon fontSize="small" />; // Dotted circle icon
+      break;
+    case "Backlog":
+      icon = <DoNotDisturbIcon fontSize="small" />; // Do not disturb icon
+      break;
+    default:
+      icon = null;
+  }
+
+  return <div className="status-icon">{icon}</div>;
+};
+
 const Card = ({
   id,
   title,
@@ -12,7 +40,6 @@ const Card = ({
   name,
   availability,
 }) => {
-  // Function to generate a random dark color
   const getRandomDarkColor = () => {
     const letters = "0123456789ABCDEF";
     let color = "#";
@@ -22,13 +49,11 @@ const Card = ({
     return color;
   };
 
-  // Function to get the abbreviation from the name
   const getAbbreviation = (name) => {
     const initials = name.split(" ").map((word) => word[0]);
     return initials.join("").toUpperCase();
   };
 
-  // Determine the background color for the profile icon
   const backgroundColor = getRandomDarkColor();
 
   return (
@@ -49,6 +74,7 @@ const Card = ({
         </div>
       </div>
       <div className="container">
+        <StatusIcon status={status} />
         <p>{title}</p>
       </div>
       <div className="footer">

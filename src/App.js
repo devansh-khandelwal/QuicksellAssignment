@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Navbar from "./components/Navbar/Navbar";
-import Card from "./components/Card/Card";
 import "./App.css";
 import GroupByPriority from "./pages/GroupByPriority/GroupByPriority";
 import GroupByStatus from "./pages/GroupByStatus/GroupByStatus";
@@ -47,17 +46,7 @@ function App() {
         handleItemClick1={handleItemClick1}
         handleItemClick2={handleItemClick2}
       />
-      <Component />
-      {/* <Card
-        id="CAM-1"
-        title="Update User Profile Page UI"
-        tag={["Feature request"]}
-        userId="usr-1"
-        status="Todo"
-        priority={4}
-        name="Suresh Gupta"
-        availability={true}
-      /> */}
+      <Component selectedItem2={selectedItem2} />
     </div>
   );
 }

@@ -5,7 +5,7 @@ import Card from "../../components/Card/Card";
 // Assuming you have the data stored in a variable named apiData
 import { tickets, users } from "../../data"; // Adjust the import path
 
-function GroupByStatus() {
+function GroupByStatus({ selectedItem2 }) {
   const statusColumns = {
     Todo: "Todo",
     Backlog: "Backlog",
@@ -15,9 +15,18 @@ function GroupByStatus() {
   };
 
   const renderTicketsByStatus = (status) => {
-    const filteredTickets = tickets.filter(
-      (ticket) => ticket.status === status
-    );
+    let filteredTickets = tickets.filter((ticket) => ticket.status === status);
+
+    // Sorting based on selectedItem2
+    if (selectedItem2 === "Priority") {
+      // Sort by priority in descending order
+      filteredTickets = filteredTickets.sort((a, b) => b.priority - a.priority);
+    } else if (selectedItem2 === "Title") {
+      // Sort by title in ascending order
+      filteredTickets = filteredTickets.sort((a, b) =>
+        a.title.localeCompare(b.title)
+      );
+    }
 
     return filteredTickets.map((ticket) => {
       const user = users.find((u) => u.id === ticket.userId);

@@ -5,15 +5,24 @@ import Card from "../../components/Card/Card";
 // Assuming you have the data stored in a variable named apiData
 import { tickets, users } from "../../data"; //
 
-function GroupByUser() {
+function GroupByUser({ selectedItem2 }) {
   const countTicketsByUser = (userId) => {
     return tickets.filter((ticket) => ticket.userId === userId).length;
   };
 
   const renderTicketsByUser = (userId) => {
-    const filteredTickets = tickets.filter(
-      (ticket) => ticket.userId === userId
-    );
+    let filteredTickets = tickets.filter((ticket) => ticket.userId === userId);
+
+    // Sorting based on selectedItem2
+    if (selectedItem2 === "Priority") {
+      // Sort by priority in descending order
+      filteredTickets = filteredTickets.sort((a, b) => b.priority - a.priority);
+    } else if (selectedItem2 === "Title") {
+      // Sort by title in ascending order
+      filteredTickets = filteredTickets.sort((a, b) =>
+        a.title.localeCompare(b.title)
+      );
+    }
 
     return filteredTickets.map((ticket) => (
       <Card

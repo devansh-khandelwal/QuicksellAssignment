@@ -1,3 +1,29 @@
+// data.js
+
+// let tickets = [];
+// let users = [];
+
+// // Function to fetch data from the API
+// async function fetchData() {
+//   try {
+//     const response = await fetch(
+//       "https://api.quicksell.co/v1/internal/frontend-assignment"
+//     );
+//     const data = await response.json();
+//     // Extract tickets and users from the API data
+//     tickets = data.tickets;
+//     users = data.users;
+//   } catch (error) {
+//     console.error("Error fetching data:", error);
+//   }
+// }
+
+// // Call the fetchData function to fetch data when the module is imported
+// fetchData();
+
+// // Export tickets and users
+// export { tickets, users };
+
 const tickets = [
   {
     id: "CAM-1",

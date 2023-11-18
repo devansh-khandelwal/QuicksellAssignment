@@ -3,34 +3,43 @@ import React, { useState } from "react";
 import "./Navbar.css";
 import TwoByTwoComponent from "./NavbarButton";
 
-const Navbar = () => {
+export default function Navbar({
+  toggleNestedDropdown,
+  selectedItem1,
+  selectedItem2,
+  handleItemClick1,
+  handleItemClick2,
+}) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [nestedDropdownOpen, setNestedDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
-  };
-
-  const toggleNestedDropdown = () => {
-    setNestedDropdownOpen(!nestedDropdownOpen);
+    console.log("yes");
   };
 
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        <button className="navbar-toggle" onClick={toggleDropdown}>
+        <button className="navbar-toggle" onClick={() => toggleDropdown()}>
           Display <span className={`arrow down`}></span>
         </button>
         {dropdownOpen && (
           <ul className="navbar-dropdown">
-            <li className="navbar-dropdown-item" onClick={toggleNestedDropdown}>
-              <TwoByTwoComponent />
+            <li
+              className="navbar-dropdown-item"
+              onClick={() => toggleNestedDropdown()}
+            >
+              <TwoByTwoComponent
+                toggleDropdown={toggleDropdown}
+                selectedItem1={selectedItem1}
+                selectedItem2={selectedItem2}
+                handleItemClick1={handleItemClick1}
+                handleItemClick2={handleItemClick2}
+              />
             </li>
           </ul>
         )}
       </div>
     </nav>
   );
-};
-
-export default Navbar;
+}

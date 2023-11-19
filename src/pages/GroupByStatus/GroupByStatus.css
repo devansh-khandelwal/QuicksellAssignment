@@ -1,6 +1,47 @@
 .GroupByStatus {
   display: flex;
   background-color: #f5f5f9;
+  height: 90vh;
+  padding: 20px;
+}
+
+.status-heading {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status-group-left {
+  display: flex;
+  flex-direction: row;
+}
+
+.status-group-right {
+  transform: scale(0.9);
+}
+
+.status-number-of-tickets {
+  padding-left: 8px;
+  font-size: 15px;
+  color: #a6a7a9;
+}
+
+.status-text {
+  font-size: 15px;
+}
+
+.status-icons {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  transform: scale(1.2);
+}
+
+.additional-icons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .status-column {
@@ -8,4 +49,6 @@
   margin: 10px;
 }
 
-/* Add any additional styling as needed */
+.card-status-icon {
+  margin-right: 0px !important;
+}

@@ -3,30 +3,36 @@ import "./Card.css";
 
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
-import DoNotDisturbIcon from "@mui/icons-material/DoNotDisturb";
-import PendingIcon from "@mui/icons-material/Pending";
+import BorderColorOutlinedIcon from "@mui/icons-material/BorderColorOutlined";
+import PendingOutlinedIcon from "@mui/icons-material/PendingOutlined";
+import CancelIcon from "@mui/icons-material/Cancel";
+import CircleIcon from "@mui/icons-material/Circle";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 
 const StatusIcon = ({ status }) => {
   let icon;
 
   switch (status) {
     case "Todo":
-      icon = <RadioButtonUncheckedIcon fontSize="small" />; // Unchecked circle icon
+      icon = <RadioButtonUncheckedIcon color="action" />; // Unchecked circle icon
       break;
     case "Done":
-      icon = <CheckCircleIcon fontSize="small" />; // Checked circle icon
+      icon = <CheckCircleIcon color="primary" />; // Checked circle icon
       break;
     case "In progress":
-      icon = <PendingIcon fontSize="small" />; // Dotted circle icon
+      icon = <PendingOutlinedIcon color="action" />; // Dotted circle icon
       break;
     case "Backlog":
-      icon = <DoNotDisturbIcon fontSize="small" />; // Do not disturb icon
+      icon = <BorderColorOutlinedIcon color="action" />; // Do not disturb icon
+      break;
+    case "Cancelled":
+      icon = <CancelIcon color="action" />; // Unchecked circle icon
       break;
     default:
       icon = null;
   }
 
-  return <div className="status-icon">{icon}</div>;
+  return <div className="card-status-icon">{icon}</div>;
 };
 
 const Card = ({
@@ -57,31 +63,46 @@ const Card = ({
 
   const backgroundColor = getRandomDarkColor();
 
+  const maxTextLength = 55; // Set your desired maximum text length
+
+  const truncatedText =
+    title.length > maxTextLength
+      ? title.slice(0, maxTextLength) + "..."
+      : title;
+
   return (
     <div className="card">
-      <div className="header">
-        <h4>{id}</h4>
-        <div className="profile-container">
-          {name && (
-            <div className="profile-icon" style={{ backgroundColor }}>
-              <div className="initials">
-                {getAbbreviation(name)}
-                <div
-                  className={`availability-indicator ${
-                    availability ? "available" : "not-available"
-                  }`}
-                ></div>
+      <div className="card-header-cover">
+        <div className="card-header">
+          {id}
+          <div className="card-profile-container">
+            {name && (
+              <div className="card-profile-icon" style={{ backgroundColor }}>
+                <div className="card-initials">{getAbbreviation(name)}</div>
               </div>
-            </div>
-          )}
+            )}
+            <div
+              className={`card-availability-indicator ${
+                availability ? "available" : "not-available"
+              }`}
+            ></div>
+          </div>
         </div>
       </div>
-      <div className="container">
-        <StatusIcon status={status} />
-        <p>{title}</p>
+      <div className="card-container">
+        {status && <StatusIcon status={status} />}
+        {truncatedText}
       </div>
-      <div className="footer">
-        <p>{tag[0]}</p>
+      <div className="card-footer">
+        <div className="card-footer-icon">
+          <MoreHorizIcon color="action" />
+        </div>
+        <div className="card-tag">
+          <div className="card-tag-icon">
+            <CircleIcon color="action" />
+          </div>
+          <div className="card-tag-text">{tag[0]}</div>
+        </div>
       </div>
     </div>
   );

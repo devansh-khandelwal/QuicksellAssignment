@@ -38,11 +38,11 @@
   transform: scale(1.2);
 }
 
-.additional-icons {
+/* .additional-icons {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
+} */
 
 .status-column {
   flex: 1;

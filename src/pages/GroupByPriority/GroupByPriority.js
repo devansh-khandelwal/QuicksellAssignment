@@ -1,17 +1,40 @@
 import React from "react";
 import "./GroupByPriority.css";
 import Card from "../../components/Card/Card";
+import { tickets, users } from "../../data";
 
-// Assuming you have the data stored in a variable named apiData
-import { tickets, users } from "../../data"; // Adjust the import path
+import SignalCellularAltIcon from "@mui/icons-material/SignalCellularAlt";
+import ErrorIcon from "@mui/icons-material/Error";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import AddIcon from "@mui/icons-material/Add";
 
 function GroupByPriority({ selectedItem2 }) {
-  const priorityColumns = {
-    0: "No priority",
-    1: "Low",
-    2: "Medium",
-    3: "High",
-    4: "Urgent",
+  const priorityColumns = [
+    { priority: 0, label: "No priority", icon: <MoreHorizIcon /> },
+    {
+      priority: 4,
+      label: "Urgent",
+      icon: <ErrorIcon color="error" />,
+    },
+    {
+      priority: 3,
+      label: "High",
+      icon: <SignalCellularAltIcon color="action" />,
+    },
+    {
+      priority: 2,
+      label: "Medium",
+      icon: <SignalCellularAltIcon color="action" />,
+    },
+    {
+      priority: 1,
+      label: "Low",
+      icon: <SignalCellularAltIcon color="action" />,
+    },
+  ];
+
+  const countTicketsByPriority = (priority) => {
+    return tickets.filter((ticket) => ticket.priority === priority).length;
   };
 
   const renderTicketsByPriority = (priority) => {
@@ -19,12 +42,9 @@ function GroupByPriority({ selectedItem2 }) {
       (ticket) => ticket.priority === priority
     );
 
-    // Sorting based on selectedItem2
     if (selectedItem2 === "Priority") {
-      // Sort by priority in descending order
       filteredTickets = filteredTickets.sort((a, b) => b.priority - a.priority);
     } else if (selectedItem2 === "Title") {
-      // Sort by title in ascending order
       filteredTickets = filteredTickets.sort((a, b) =>
         a.title.localeCompare(b.title)
       );
@@ -51,10 +71,23 @@ function GroupByPriority({ selectedItem2 }) {
 
   return (
     <div className="GroupByPriority">
-      {Object.keys(priorityColumns).map((priority) => (
-        <div key={priority} className="priority-column">
-          <h4>{priorityColumns[priority]}</h4>
-          {renderTicketsByPriority(parseInt(priority))}
+      {priorityColumns.map((priority) => (
+        <div key={priority.priority} className="priority-column">
+          <div className="priority-heading">
+            <div className="priority-group-left">
+              <div className="priority-icons">{priority.icon}</div>
+              <div className="priority-text">{priority.label}</div>
+              <div className="status-number-of-tickets">
+                {countTicketsByPriority(priority.priority)}
+              </div>
+            </div>
+            <div className="priority-group-right">
+              <AddIcon />
+              <MoreHorizIcon />
+            </div>
+          </div>
+
+          {renderTicketsByPriority(priority.priority)}
         </div>
       ))}
     </div>

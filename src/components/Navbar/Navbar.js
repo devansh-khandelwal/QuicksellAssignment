@@ -1,7 +1,9 @@
 // Navbar.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Navbar.css";
-import TwoByTwoComponent from "./NavbarButton";
+import NavBarButton from "./NavbarButton";
+import TuneIcon from "@mui/icons-material/Tune";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 export default function Navbar({
   toggleNestedDropdown,
@@ -16,11 +18,30 @@ export default function Navbar({
     setDropdownOpen(!dropdownOpen);
   };
 
+  const closeDropdown = (event) => {
+    if (!event.target.closest(".navbar-container")) {
+      setDropdownOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", closeDropdown);
+    return () => {
+      document.removeEventListener("click", closeDropdown);
+    };
+  }, []);
+
   return (
     <nav className="navbar">
       <div className="navbar-container">
         <button className="navbar-toggle" onClick={() => toggleDropdown()}>
-          Display <span className={`arrow down`}></span>
+          <div className="navbar-tune">
+            <TuneIcon />
+          </div>
+          <div className="navbar-display-button">Display</div>
+          <div className="navbar-arrow-drop-down">
+            <ArrowDropDownIcon />
+          </div>
         </button>
         {dropdownOpen && (
           <ul className="navbar-dropdown">
@@ -28,7 +49,7 @@ export default function Navbar({
               className="navbar-dropdown-item"
               onClick={() => toggleNestedDropdown()}
             >
-              <TwoByTwoComponent
+              <NavBarButton
                 toggleDropdown={toggleDropdown}
                 selectedItem1={selectedItem1}
                 selectedItem2={selectedItem2}

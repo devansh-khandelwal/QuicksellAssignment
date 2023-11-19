@@ -1,9 +1,9 @@
 // NavbarButton.js
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import "./NavbarButton.css";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
-export default function TwoByTwoComponent({
-  closeCallback,
+export default function NavbarButton({
   toggleDropdown,
   selectedItem1,
   selectedItem2,
@@ -34,19 +34,43 @@ export default function TwoByTwoComponent({
     setDropdown2Open(false);
   };
 
+  const closeDropdowns = (event) => {
+    if (
+      dropdown1Ref.current &&
+      !dropdown1Ref.current.contains(event.target) &&
+      dropdown2Ref.current &&
+      !dropdown2Ref.current.contains(event.target)
+    ) {
+      setDropdown1Open(false);
+      setDropdown2Open(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", closeDropdowns);
+    return () => {
+      document.removeEventListener("click", closeDropdowns);
+    };
+  }, []);
+
   return (
-    <div className="two-by-two-container">
-      <div className="row">
-        <div className="column">
+    <div className="NavbarButton">
+      <div className="NavbarButton-row">
+        <div className="NavbarButton-column">
           <p>Grouping</p>
         </div>
-        <div className="column">
-          <button className="dropdown-button" onClick={() => toggleDropdown1()}>
+        <div className="NavbarButton-column">
+          <button
+            className="NavbarButton-dropdown-button"
+            onClick={() => toggleDropdown1()}
+          >
             {selectedItem1}
-            <span className={`arrow down`}></span>
+            <div className="NavbarButton-arrowDropdown-icon">
+              <ArrowDropDownIcon />
+            </div>
           </button>
           {dropdown1Open && (
-            <ul className="dropdown" ref={dropdown1Ref}>
+            <ul className="NavbarButton-dropdown" ref={dropdown1Ref}>
               <li onClick={() => onClick1("Status")}>Status</li>
               <li onClick={() => onClick1("User")}>User</li>
               <li onClick={() => onClick1("Priority")}>Priority</li>
@@ -54,17 +78,22 @@ export default function TwoByTwoComponent({
           )}
         </div>
       </div>
-      <div className="row">
-        <div className="column">
+      <div className="NavbarButton-row">
+        <div className="NavbarButton-column">
           <p>Ordering</p>
         </div>
-        <div className="column">
-          <button className="dropdown-button" onClick={() => toggleDropdown2()}>
+        <div className="NavbarButton-column">
+          <button
+            className="NavbarButton-dropdown-button"
+            onClick={() => toggleDropdown2()}
+          >
             {selectedItem2}
-            <span className={`arrow down`}></span>
+            <div className="NavbarButton-arrowDropdown-icon">
+              <ArrowDropDownIcon />
+            </div>
           </button>
           {dropdown2Open && (
-            <ul className="dropdown" ref={dropdown2Ref}>
+            <ul className="NavbarButton-dropdown" ref={dropdown2Ref}>
               <li onClick={() => onClick2("Priority")}>Priority</li>
               <li onClick={() => onClick2("Title")}>Title</li>
             </ul>

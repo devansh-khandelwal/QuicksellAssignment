@@ -1,66 +1,72 @@
-/* TwoByTwoComponent.css */
-.two-by-two-container {
+/* NavbarButon.css */
+.NavbarButton {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 20px;
+  margin-left: 5px;
+  width: 200px;
+  align-items: flex-start;
 }
 
-.row {
+.NavbarButton-row {
   display: flex;
-  margin-bottom: 10px;
   align-items: center;
+  width: 100%;
 }
 
-.column {
+.NavbarButton-column {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 10px;
+  font-size: 12px;
+  justify-content: space-between;
 }
 
-.dropdown-button {
+.NavbarButton-column p {
+  font-weight: 500;
+  color: #a6a7a9;
+}
+
+.NavbarButton-dropdown-button {
   background: none;
-  border: none;
-  font-size: 14px;
+  font-size: 12px;
   cursor: pointer;
   display: flex;
   align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.arrow {
+.NavbarButton-arrow {
   margin-left: 5px;
   border: solid black;
-  border-width: 0 2px 2px 0;
   display: inline-block;
-  padding: 3px;
 }
 
-.up {
-  transform: rotate(-135deg);
-  -webkit-transform: rotate(-135deg);
+.NavbarButton-arrowDropdown-icon {
+  transform: scale(0.8) !important;
 }
 
-.down {
-  transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
-}
-
-.dropdown {
+.NavbarButton-dropdown {
   list-style: none;
-  padding: 0;
-  margin: 0;
+  padding: 0px;
+  margin: 0px;
   position: absolute;
-  background-color: blue;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.1);
-  z-index: 1;
+  border: 1px solid #ccc;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  font-size: 12px;
 }
 
-.dropdown li {
+.NavbarButton-dropdown li {
   padding: 10px;
   cursor: pointer;
 }
 
-.dropdown li:hover {
+.NavbarButton-dropdown li:hover {
   background-color: #e9ecef;
 }

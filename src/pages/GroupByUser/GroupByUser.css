@@ -1,7 +1,6 @@
 .GroupByUser {
   display: flex;
-  background-color: #f5f5f9;
-  height: 90vh;
+  height: min-content;
   padding: 20px;
 }
 

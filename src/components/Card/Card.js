@@ -88,11 +88,9 @@ const Card = ({
     return storedColor || getRandomDarkColor();
   };
 
-  // State to hold the profile color
   const [backgroundColor] = useState(getStoredColor);
 
   useEffect(() => {
-    // Store the generated color in localStorage
     localStorage.setItem(`profileColor_${userId}`, backgroundColor);
   }, [userId, backgroundColor]);
 

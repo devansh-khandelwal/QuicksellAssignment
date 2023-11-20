@@ -33,7 +33,6 @@ function App() {
   const [isFetchingData, setIsFetchingData] = useState(true);
 
   useEffect(() => {
-    // Fetch data when the component mounts or when selectedItem1 changes
     fetchData()
       .then(() => {
         localStorage.setItem("selectedItem1", selectedItem1);

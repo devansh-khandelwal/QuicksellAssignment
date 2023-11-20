@@ -15,7 +15,6 @@
   justify-content: space-between;
   align-items: center;
   width: 17vw;
-  /* border: 1px solid red; */
 }
 
 .user-group-left {
@@ -23,7 +22,6 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid red; */
 }
 
 .user-group-right {
@@ -36,12 +34,10 @@
   justify-content: center;
   align-items: center;
   margin-right: 10px;
-  /* border: 1px solid red; */
 }
 .user-name {
   display: flex;
   align-items: center;
-  /* border: 1px solid green; */
   white-space: nowrap;
   font-size: 13px;
   font-weight: 500;

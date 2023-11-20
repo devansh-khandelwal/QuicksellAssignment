@@ -14,19 +14,19 @@ const StatusIcon = ({ status }) => {
 
   switch (status) {
     case "Todo":
-      icon = <RadioButtonUncheckedIcon color="action" />; // Unchecked circle icon
+      icon = <RadioButtonUncheckedIcon color="action" />;
       break;
     case "Done":
-      icon = <CheckCircleIcon color="primary" />; // Checked circle icon
+      icon = <CheckCircleIcon color="primary" />;
       break;
     case "In progress":
-      icon = <PendingOutlinedIcon color="action" />; // Dotted circle icon
+      icon = <PendingOutlinedIcon color="action" />;
       break;
     case "Backlog":
-      icon = <BorderColorOutlinedIcon color="action" />; // Do not disturb icon
+      icon = <BorderColorOutlinedIcon color="action" />;
       break;
     case "Cancelled":
-      icon = <CancelIcon color="action" />; // Unchecked circle icon
+      icon = <CancelIcon color="action" />;
       break;
     default:
       icon = null;
@@ -44,7 +44,7 @@ const Card = ({
   status,
   priority,
   name,
-  availability,
+  availability = "",
 }) => {
   const getRandomDarkColor = () => {
     const letters = "0123456789ABCDEF";
@@ -56,14 +56,14 @@ const Card = ({
   };
 
   const getAbbreviation = (name) => {
-    if (!name) return ""; // Return an empty string if the name is undefined
+    if (!name) return "";
     const initials = name.split(" ").map((word) => word[0]);
     return initials.join("").toUpperCase();
   };
 
   const backgroundColor = getRandomDarkColor();
 
-  const maxTextLength = 55; // Set your desired maximum text length
+  const maxTextLength = 55;
 
   const truncatedText =
     title.length > maxTextLength
@@ -81,11 +81,13 @@ const Card = ({
                 <div className="card-initials">{getAbbreviation(name)}</div>
               </div>
             )}
-            <div
-              className={`card-availability-indicator ${
-                availability ? "available" : "not-available"
-              }`}
-            ></div>
+            {availability !== "" && (
+              <div
+                className={`card-availability-indicator ${
+                  availability ? "available" : "not-available"
+                }`}
+              ></div>
+            )}
           </div>
         </div>
       </div>
@@ -94,9 +96,11 @@ const Card = ({
         {truncatedText}
       </div>
       <div className="card-footer">
-        <div className="card-footer-icon">
-          <MoreHorizIcon color="action" />
-        </div>
+        {priority && (
+          <div className="card-footer-icon">
+            <MoreHorizIcon color="action" />
+          </div>
+        )}
         <div className="card-tag">
           <div className="card-tag-icon">
             <CircleIcon color="action" />

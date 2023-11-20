@@ -15,35 +15,30 @@
 .status-group-left {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .status-group-right {
-  transform: scale(0.9);
+  transform: scale(0.8);
 }
 
 .status-number-of-tickets {
   padding-left: 8px;
-  font-size: 15px;
+  font-size: 13px;
   color: #a6a7a9;
 }
 
 .status-text {
-  font-size: 15px;
+  font-size: 13px;
+  font-weight: 500;
 }
 
 .status-icons {
   display: flex;
   align-items: center;
   margin-right: 10px;
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
-
-/* .additional-icons {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-} */
-
 .status-column {
   flex: 1;
   margin: 10px;

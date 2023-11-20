@@ -10,33 +10,34 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  /* border: red solid 1px; */
 }
 
 .priority-group-left {
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .priority-group-right {
-  transform: scale(0.9);
+  transform: scale(0.7);
 }
 
 .priority-number-of-tickets {
   padding-left: 8px;
-  font-size: 15px;
+  font-size: 13px;
   color: #a6a7a9;
 }
 
 .priority-text {
-  font-size: 15px;
+  font-size: 13px;
+  font-weight: 500;
 }
 
 .priority-icons {
   display: flex;
   align-items: center;
   margin-right: 10px;
-  transform: scale(0.9);
+  transform: scale(0.7);
 }
 
 .priority-column {

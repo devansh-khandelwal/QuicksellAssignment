@@ -61,7 +61,6 @@ function GroupByPriority({ selectedItem2 }) {
           tag={ticket.tag}
           userId={ticket.userId}
           status={ticket.status}
-          priority={ticket.priority}
           name={user ? user.name : ""}
           availability={user ? user.available : false}
         />
@@ -77,7 +76,7 @@ function GroupByPriority({ selectedItem2 }) {
             <div className="priority-group-left">
               <div className="priority-icons">{priority.icon}</div>
               <div className="priority-text">{priority.label}</div>
-              <div className="status-number-of-tickets">
+              <div className="priority-number-of-tickets">
                 {countTicketsByPriority(priority.priority)}
               </div>
             </div>

@@ -1,12 +1,14 @@
+// App.js
+
 import React, { useState, useEffect } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import "./App.css";
 import GroupByPriority from "./pages/GroupByPriority/GroupByPriority";
 import GroupByStatus from "./pages/GroupByStatus/GroupByStatus";
 import GroupByUser from "./pages/GroupByUser/GroupByUser";
+import { fetchData } from "./data";
 
 function App() {
-  // Initialize state values with the values stored in localStorage, if available
   const [selectedItem1, setSelectedItem1] = useState(
     localStorage.getItem("selectedItem1") || "Status"
   );
@@ -28,14 +30,20 @@ function App() {
     setSelectedItem2(item);
   };
 
-  // Use useEffect to update localStorage whenever the state values change
-  useEffect(() => {
-    localStorage.setItem("selectedItem1", selectedItem1);
-  }, [selectedItem1]);
+  const [isFetchingData, setIsFetchingData] = useState(true);
 
   useEffect(() => {
-    localStorage.setItem("selectedItem2", selectedItem2);
-  }, [selectedItem2]);
+    // Fetch data when the component mounts or when selectedItem1 changes
+    fetchData()
+      .then(() => {
+        localStorage.setItem("selectedItem1", selectedItem1);
+        localStorage.setItem("selectedItem2", selectedItem2);
+        setIsFetchingData(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  }, [selectedItem1, selectedItem2]);
 
   let Component;
 
@@ -52,16 +60,18 @@ function App() {
   }
 
   return (
-    <div>
-      <Navbar
-        toggleNestedDropdown={toggleNestedDropdown}
-        selectedItem1={selectedItem1}
-        selectedItem2={selectedItem2}
-        handleItemClick1={handleItemClick1}
-        handleItemClick2={handleItemClick2}
-      />
-      <Component selectedItem2={selectedItem2} />
-    </div>
+    !isFetchingData && (
+      <div>
+        <Navbar
+          toggleNestedDropdown={toggleNestedDropdown}
+          selectedItem1={selectedItem1}
+          selectedItem2={selectedItem2}
+          handleItemClick1={handleItemClick1}
+          handleItemClick2={handleItemClick2}
+        />
+        <Component selectedItem2={selectedItem2} />
+      </div>
+    )
   );
 }
 

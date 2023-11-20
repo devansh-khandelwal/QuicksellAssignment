@@ -8,6 +8,8 @@ import PendingOutlinedIcon from "@mui/icons-material/PendingOutlined";
 import CancelIcon from "@mui/icons-material/Cancel";
 import CircleIcon from "@mui/icons-material/Circle";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+import SignalCellularAltIcon from "@mui/icons-material/SignalCellularAlt";
+import ErrorIcon from "@mui/icons-material/Error";
 
 const StatusIcon = ({ status }) => {
   let icon;
@@ -35,6 +37,32 @@ const StatusIcon = ({ status }) => {
   return <div className="card-status-icon">{icon}</div>;
 };
 
+const PriorityIcon = ({ priority }) => {
+  let icon;
+
+  switch (priority) {
+    case 0:
+      icon = <MoreHorizIcon color="action" />;
+      break;
+    case 1:
+      icon = <SignalCellularAltIcon color="action" />;
+      break;
+    case 2:
+      icon = <SignalCellularAltIcon color="action" />;
+      break;
+    case 3:
+      icon = <SignalCellularAltIcon color="action" />;
+      break;
+    case 4:
+      icon = <ErrorIcon color="error" />;
+      break;
+    default:
+      icon = null;
+  }
+
+  return <div className="card-footer-icon">{icon}</div>;
+};
+
 const Card = ({
   id,
   title,
@@ -54,6 +82,8 @@ const Card = ({
     }
     return color;
   };
+
+  // console.log(priority);
 
   const getAbbreviation = (name) => {
     if (!name) return "";
@@ -96,11 +126,7 @@ const Card = ({
         {truncatedText}
       </div>
       <div className="card-footer">
-        {priority && (
-          <div className="card-footer-icon">
-            <MoreHorizIcon color="action" />
-          </div>
-        )}
+        {priority !== "" && <PriorityIcon priority={priority} />}
         <div className="card-tag">
           <div className="card-tag-icon">
             <CircleIcon color="action" />

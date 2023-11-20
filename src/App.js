@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import "./App.css";
 import GroupByPriority from "./pages/GroupByPriority/GroupByPriority";
@@ -6,8 +6,13 @@ import GroupByStatus from "./pages/GroupByStatus/GroupByStatus";
 import GroupByUser from "./pages/GroupByUser/GroupByUser";
 
 function App() {
-  const [selectedItem1, setSelectedItem1] = useState("Status");
-  const [selectedItem2, setSelectedItem2] = useState("Priority");
+  // Initialize state values with the values stored in localStorage, if available
+  const [selectedItem1, setSelectedItem1] = useState(
+    localStorage.getItem("selectedItem1") || "Status"
+  );
+  const [selectedItem2, setSelectedItem2] = useState(
+    localStorage.getItem("selectedItem2") || "Priority"
+  );
 
   const [nestedDropdownOpen, setNestedDropdownOpen] = useState(false);
 
@@ -22,6 +27,15 @@ function App() {
   const handleItemClick2 = (item) => {
     setSelectedItem2(item);
   };
+
+  // Use useEffect to update localStorage whenever the state values change
+  useEffect(() => {
+    localStorage.setItem("selectedItem1", selectedItem1);
+  }, [selectedItem1]);
+
+  useEffect(() => {
+    localStorage.setItem("selectedItem2", selectedItem2);
+  }, [selectedItem2]);
 
   let Component;
 

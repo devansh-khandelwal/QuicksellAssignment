@@ -2,8 +2,13 @@
   text-align: center;
 }
 
+body::-webkit-scrollbar {
+  display: none;
+}
+
 body {
-  overflow: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .App-logo {

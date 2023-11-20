@@ -20,6 +20,11 @@ function GroupByUser({ selectedItem2 }) {
     return color;
   };
 
+  const getStoredColor = (userId) => {
+    const storedColor = localStorage.getItem(`profileColor_${userId}`);
+    return storedColor || getRandomDarkColor();
+  };
+
   const getAbbreviation = (name) => {
     if (!name) return "";
     const initials = name.split(" ").map((word) => word[0]);
@@ -51,40 +56,46 @@ function GroupByUser({ selectedItem2 }) {
 
   return (
     <div className="GroupByUser">
-      {users.map((user) => (
-        <div key={user.id} className="user-column">
-          <div className="user-heading">
-            <div className="user-group-left">
-              <div className="profile-icon">
-                <div className="user-profile-container">
-                  {user.name && (
-                    <div
-                      className="card-profile-icon"
-                      style={{ backgroundColor: getRandomDarkColor() }}
-                    >
-                      <div className="card-initials">
-                        {getAbbreviation(user.name)}
+      {users.map((user) => {
+        const backgroundColor = getStoredColor(user.id);
+
+        return (
+          <div key={user.id} className="user-column">
+            <div className="user-heading">
+              <div className="user-group-left">
+                <div className="profile-icon">
+                  <div className="user-profile-container">
+                    {user.name && (
+                      <div
+                        className="card-profile-icon"
+                        style={{ backgroundColor }}
+                      >
+                        <div className="card-initials">
+                          {getAbbreviation(user.name)}
+                        </div>
                       </div>
-                    </div>
-                  )}
-                  <div
-                    className={`card-availability-indicator ${
-                      user.available ? "available" : "not-available"
-                    }`}
-                  ></div>
+                    )}
+                    <div
+                      className={`card-availability-indicator ${
+                        user.available ? "available" : "not-available"
+                      }`}
+                    ></div>
+                  </div>
+                </div>
+                <div className="user-name">{user.name}</div>
+                <div className="ticket-count">
+                  {countTicketsByUser(user.id)}
                 </div>
               </div>
-              <div className="user-name">{user.name}</div>
-              <div className="ticket-count">{countTicketsByUser(user.id)}</div>
+              <div className="user-group-right">
+                <AddIcon />
+                <MoreHorizIcon />
+              </div>
             </div>
-            <div className="user-group-right">
-              <AddIcon />
-              <MoreHorizIcon />
-            </div>
+            {renderTicketsByUser(user.id)}
           </div>
-          {renderTicketsByUser(user.id)}
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }

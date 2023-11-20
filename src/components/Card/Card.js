@@ -1,4 +1,4 @@
-import React from "react";
+import { React, useState, useEffect } from "react";
 import "./Card.css";
 
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
@@ -83,6 +83,19 @@ const Card = ({
     return color;
   };
 
+  const getStoredColor = () => {
+    const storedColor = localStorage.getItem(`profileColor_${userId}`);
+    return storedColor || getRandomDarkColor();
+  };
+
+  // State to hold the profile color
+  const [backgroundColor] = useState(getStoredColor);
+
+  useEffect(() => {
+    // Store the generated color in localStorage
+    localStorage.setItem(`profileColor_${userId}`, backgroundColor);
+  }, [userId, backgroundColor]);
+
   // console.log(priority);
 
   const getAbbreviation = (name) => {
@@ -90,8 +103,6 @@ const Card = ({
     const initials = name.split(" ").map((word) => word[0]);
     return initials.join("").toUpperCase();
   };
-
-  const backgroundColor = getRandomDarkColor();
 
   const maxTextLength = 55;
 
